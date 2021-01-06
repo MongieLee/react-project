@@ -17,15 +17,9 @@ const showLoading = () => {
 };
 
 const hideLoading = () => {
-  console.log(`requestCount`);
-  console.log(requestCount);
   requestCount--;
-  console.log(requestCount);
-
   if (requestCount === 0) {
-    console.log("irun");
-
-    document.body.removeChild(document.querySelect("#lmLoading"));
+    document.body.removeChild(document.querySelector("#lmLoading"));
   }
 };
 

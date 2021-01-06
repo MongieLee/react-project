@@ -1,11 +1,13 @@
-const UPDATE_USER = "UPDATE_USER";
+const initState = {
+  name: "limengjie",
+};
 
-const user = (state = {}, action) => {
+const user = (state = initState, action) => {
   switch (action.type) {
-    case UPDATE_USER:
+    case "UPDATE_USER":
       return {
         ...state,
-        user: { ...state.user, ...action.user },
+        ...action.user,
       };
     default:
       return state;

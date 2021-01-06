@@ -11,28 +11,21 @@ const service = axios.create({
 
 service.interceptors.request.use(
   function (config) {
-    // Toast.showLoadding("加载中...");
     showLoading();
     return config;
   },
   function (error) {
     hideLoading();
-    // 对请求错误做些什么
     return Promise.reject(error);
   }
 );
 
-// 添加响应拦截器
 service.interceptors.response.use(
   function (response) {
-    // 对响应数据做点什么
-    // Toast.hideLoadding();
     hideLoading();
-    console.log("???")
-    return response.data;
+    return Promise.resolve(response);
   },
   function (error) {
-    // 对响应错误做点什么
     hideLoading();
     return Promise.reject(error);
   }
@@ -43,7 +36,7 @@ export default function request(url, type = "get", data = {}, params = {}) {
     const options = { url, type, data, params };
     service(options)
       .then((response) => {
-        if (response.status === "200") {
+        if (response.status === 200) {
           resolve(response);
         } else {
           console.error(response);
@@ -53,6 +46,5 @@ export default function request(url, type = "get", data = {}, params = {}) {
       .catch((response) => {
         reject(response);
       });
-    resolve();
   });
 }

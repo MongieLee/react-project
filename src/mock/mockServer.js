@@ -18,7 +18,6 @@ server.all("*", function (req, res, next) {
 });
 
 server.use("/user/mock", (request, response) => {
-  response.header("Access-Control-Allow-Origin", "*");
   response.json(
     Mock.mock({
       status: 200,
